@@ -1,9 +1,8 @@
 class truck:
-    def __init__(self, truckID, speed, distance, capacity, currentLoad, time):
+    def __init__(self, truckID, speed, time, packageList):
         self.truckID = truckID
         self.speed = speed
-        self.distance = distance
-        self.capacity = capacity
-        self.currentLoad = currentLoad
+        self.packages = packageList
         self.time = time
-        
+        self.mileage = None
+        self.location = None

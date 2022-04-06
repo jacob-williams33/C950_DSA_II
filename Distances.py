@@ -13,19 +13,19 @@ with open('WGUPS Distance Table.csv') as fh:
 
 
 def findDistance(startAddress, nextAddress):
-    startIndex = []
-    nextIndex = []
-    for row in addressData:
-        if row == startAddress:
-            startIndex = addressData.index(startAddress)
 
-    for row in addressData:
-        if row == nextAddress:
-            nextIndex = addressData.index(nextAddress)
-    if distanceData[startIndex][nextIndex] == None:
-        print(distanceData[nextIndex][startIndex])
+    startIndex = addressData.index(startAddress)
+    nextIndex = addressData.index(nextAddress)
+
+    if distanceData[startIndex][nextIndex] == '':
+        print(float(distanceData[nextIndex][startIndex]))
     else:
-        print(distanceData[startIndex][nextIndex])
+        print(float(distanceData[startIndex][nextIndex]))
+        #return values as float - change
+
 findDistance('HUB', '2300 Parkway Blvd')
+findDistance('2300 Parkway Blvd', 'HUB')
+
+
 
 

@@ -9,7 +9,7 @@ with open('WGUPS Distance Table.csv') as fh:
     for i, row in enumerate(myreader):
         distanceData.append(row)
 
-print(distanceData)
+#print(distanceData)
 
 
 def findDistance(startAddress, nextAddress):
@@ -18,9 +18,14 @@ def findDistance(startAddress, nextAddress):
     for row in addressData:
         if row == startAddress:
             startIndex = addressData.index(startAddress)
+
     for row in addressData:
         if row == nextAddress:
             nextIndex = addressData.index(nextAddress)
-    print(distanceData[startIndex][nextIndex])
+    if distanceData[startIndex][nextIndex] == None:
+        print(distanceData[nextIndex][startIndex])
+    else:
+        print(distanceData[startIndex][nextIndex])
+findDistance('HUB', '2300 Parkway Blvd')
 
-# findDistance('5025 State St', '5383 S 900 East #104')
+

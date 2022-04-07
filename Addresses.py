@@ -29,7 +29,7 @@ addressData = ['HUB',
 '6351 South 900 East'
 ]
 
-for i, row in enumerate(addressData):
-    print(i, row)
+#for i, row in enumerate(addressData):
+    #print(i, row)
 
 

@@ -6,3 +6,12 @@ class truck:
         self.time = time
         self.mileage = None
         self.location = None
+
+    def morePackagesToDeliver(self):
+        for pkg in self.packages:
+            if pkg.isNotDelivered():
+                return True
+        return False
+
+    def deliveryComplete(self):
+        return not self.morePackagesToDeliver()

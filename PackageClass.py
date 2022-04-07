@@ -10,7 +10,11 @@ class package:
         self.deliveryTime = None
         self.mileage = 0
 
-    def __str__(self):  # overwite print(Movie) otherwise it will print object reference
+    def __str__(self):
        return "%s, %s, %s, %s, %s, %s, %s" % (self.packageID, self.address, self.city, self.state, self.zip, self.deadline,  self.mass)
 
+    def isDelivered(self):
+        return self.deliveryTime is not None
 
+    def isNotDelivered(self):
+        return not self.isDelivered()

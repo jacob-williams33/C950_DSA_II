@@ -11,7 +11,7 @@ class package:
         self.mileage = 0
 
     def __str__(self):
-       return "%s, %s, %s, %s, %s, %s, %s" % (self.packageID, self.address, self.city, self.state, self.zip, self.deadline,  self.mass)
+       return "%s, %s, %s, %s, %s, %s, %s, %s" % (self.packageID, self.address, self.city, self.state, self.zip, self.deadline, self.deliveryTime, str(self.mileage))
 
     def isDelivered(self):
         return self.deliveryTime is not None

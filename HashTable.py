@@ -96,29 +96,9 @@ class ChainingHashTable:
                 bucket_list.remove([kv[0], kv[1]])
 
 
-def loadPackageData(fileName):
-    with open(fileName) as packages:
-        packageData = csv.reader(packages, delimiter=',')
-        for pack in packageData:
-            pID = int(pack[0])
-            address = pack[1]
-            city = pack[2]
-            state = pack[3]
-            zip = pack[4]
-            deadline = pack[5]
-            mass = pack[6]
 
 
-            # package object
-            p = package(pID, address, city, state, zip, deadline, mass)
-            # print(p)
 
-            # insert it into the hash table
-            pHash.insert(pID, p)
-
-pHash = ChainingHashTable()
-
-loadPackageData('Packages.csv')
 #for i in range (len(pHash.table)+1):
     #print("Package: {}".format(pHash.search(i+1))) # 1 to 11 is sent to myHash.search()
 

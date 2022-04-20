@@ -30,16 +30,10 @@ def loadPackageData(fileName):
             pHash.insert(pID, p)
 
 
-
 def findDistance(startAddress, nextAddress):
 
     startIndex = addressData.index(startAddress)
     nextIndex = addressData.index(nextAddress)
-
-    #if startIndex == 0:
-        #print('broken')
-    #if nextIndex == 0:
-        #print('broken')
 
     if distanceData[startIndex][nextIndex] == '':
         return float(distanceData[nextIndex][startIndex])
@@ -65,24 +59,31 @@ def startDelivery(truck):
         shortestMileage = 1000
         shortestPackage = None
 
+
         for pkg in truck.packages:
             if pkg.isNotDelivered():
                 distance = findDistance(currentAddress, pkg.address)
-                #if distance == 0:
-                   # print('don\'t shoot yourself')
                 if distance < shortestMileage:
                     shortestMileage = distance
                     shortestPackage = pkg
+                    timeToDeliver = shortestMileage / 18
+                    time_obj = datetime.timedelta(hours=timeToDeliver)
 
-        shortestPackage.deliveryTime = currentTime
+
+        shortestPackage.deliveryTime = currentTime + time_obj
+        currentTime = shortestPackage.deliveryTime
+        print(shortestPackage.deliveryTime)
         shortestPackage.mileage = shortestMileage
         currentAddress = shortestPackage.address
-        #print(shortestPackage)
 
-        #print(truck.numberOfPackagesToDeliver())
+
     print(truck.getMileageTotal())
+    print(shortestPackage.deliveryTime)
 
 startDelivery(truck1)
+truck1.getDeliveryTime()
+truck1.getPackageStatus()
+
 
 
 

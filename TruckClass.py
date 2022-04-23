@@ -8,7 +8,7 @@ class truck:
         self.location = None
 
     def morePackagesToDeliver(self):
-        #print('packages to deliver', self.numberOfPackagesToDeliver())
+
         for pkg in self.packages:
             if pkg.isNotDelivered():
                 return True

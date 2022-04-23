@@ -89,29 +89,52 @@ def startDelivery(truck):
 
         currentTime = currentTime + time_obj
         shortestPackage.deliveryTime = currentTime
-        #print(shortestPackage.deliveryTime)
+
         shortestPackage.mileage = shortestMileage
         currentAddress = shortestPackage.address
 
     returnTrip = findDistance(shortestPackage.address,'HUB')
-    #print(truck.getMileageTotal())
-    #print(truck.getMileageTotal() + returnTrip)
-    #print(shortestPackage.deliveryTime)
+    endTripMiles = truck.getMileageTotal() + returnTrip
+    endTripTime = truck.time + datetime.timedelta(hours=endTripMiles/18)
+    truck.time = endTripTime
+
 
 startDelivery(truck1)
 startDelivery(truck2)
 startDelivery(truck3)
-# truck1.getDeliveryTime()
-# truck1.getPackageStatus()
-inputTime = datetime.datetime(2022, 4, 7, 9)
 
-for pkgid in range(1, 40):
-    pkgObject = pHash.search(pkgid)
-    print(pkgObject.printPackageStatus(inputTime))
-#printPackageStatus - need two time frames - need to load all trucks
-#figure out userinterface
 
-#user interface
+print('WGUPS Daily Local Deliveries Main Menu')
+print('Deliveries began at 2022-04-07 08:00L00. Deliveries ended at: ', truck3.time)
+print('Total Miles Driven Was: ', truck1.getMileageTotal() + truck2.getMileageTotal() + truck3.getMileageTotal())
+
+while True:
+    try:
+        runCommand = int(
+            input('To Get Status of Packages at a Given Time, Enter 1 to enter new time, 0 to exit program: '))
+        if runCommand == 0:
+            exit()
+        elif runCommand == 1:
+            #continue
+            hour = int(input('Enter Hour as HH: '))
+            minute = int(input('Enter Minute as MM: '))
+            if hour < 8:
+                print('Deliveries Not Started')
+                continue
+            if hour > 24 or minute < 0 or minute > 59:
+                print('Invalid Time. Re-enter')
+                continue
+            inputTime = datetime.datetime(2022, 4, 7, hour, minute)
+            for pkgid in range(1, 40):
+                pkgObject = pHash.search(pkgid)
+                print(pkgObject.printPackageStatus(inputTime))
+
+    except ValueError:
+        print('Invalid Entry')
+        exit()
+
+
+
 
 
 

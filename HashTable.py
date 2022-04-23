@@ -99,9 +99,3 @@ class ChainingHashTable:
 
 
 
-#for i in range (len(pHash.table)+1):
-    #print("Package: {}".format(pHash.search(i+1))) # 1 to 11 is sent to myHash.search()
-
-
-
-

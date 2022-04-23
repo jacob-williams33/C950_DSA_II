@@ -19,6 +19,7 @@ class package:
     def isNotDelivered(self):
         return not self.isDelivered()
 
+    #determines package status at any given time
     def printPackageStatus(self, statusTime):
         if statusTime >= self.deliveryTime:
             deliveryStatus = "Delivered"

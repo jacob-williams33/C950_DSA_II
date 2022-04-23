@@ -1,3 +1,4 @@
+#Jacob Williams Student ID 000680520
 import csv
 from Distances import distanceData
 from PackageClass import package
@@ -29,7 +30,7 @@ def loadPackageData(fileName):
             # insert it into the hash table
             pHash.insert(pID, p)
 
-
+#method findDistance takes a start address and determines the distance to another given address from the distance table
 def findDistance(startAddress, nextAddress):
 
     startIndex = addressData.index(startAddress)
@@ -40,8 +41,11 @@ def findDistance(startAddress, nextAddress):
     else:
         return float(distanceData[startIndex][nextIndex])
 
+#loading packages from csv file
 loadPackageData('Packages.csv')
 
+
+#trucks are loaded manually according to constraints (packages that need to be on same truck, need early delivery, etc)
 pkgs1 = []
 pkgs1ID = [1, 6, 13, 14, 15, 16, 19, 20, 25, 28, 29, 30, 32, 34, 37, 40]
 for i in pkgs1ID:
@@ -63,7 +67,7 @@ for i in pkgs3ID:
 
 truck3 = truck(1, 18, datetime.datetime(2022, 4, 7, 10), pkgs3)
 
-
+#delivery method takes the trucks and uses a nearest neighbor algorithm to determine each stop. Records delivery time, and mileage for each delivery.
 def startDelivery(truck):
     currentAddress = 'HUB'
     currentTime = truck.time
@@ -103,11 +107,15 @@ startDelivery(truck1)
 startDelivery(truck2)
 startDelivery(truck3)
 
-
+#user interface
 print('WGUPS Daily Local Deliveries Main Menu')
 print('Deliveries began at 2022-04-07 08:00L00. Deliveries ended at: ', truck3.time)
-print('Total Miles Driven Was: ', truck1.getMileageTotal() + truck2.getMileageTotal() + truck3.getMileageTotal())
+print('Truck 1 traveled: ', truck1.getMileageTotal(), ' miles.')
+print('Truck 2 traveled: ', truck2.getMileageTotal(), ' miles.')
+print('Truck 3 traveled: ', truck3.getMileageTotal(), ' miles.')
+print('Total Miles Driven Was: ', truck1.getMileageTotal() + truck2.getMileageTotal() + truck3.getMileageTotal(), ' miles')
 
+#method for UI takes an input to run the program, calls printPackageStatus method to list all packages and status at any time
 while True:
     try:
         runCommand = int(

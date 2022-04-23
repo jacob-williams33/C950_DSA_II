@@ -49,10 +49,25 @@ for i in pkgs1ID:
 
 truck1 = truck(1, 18, datetime.datetime(2022, 4, 7, 8), pkgs1)
 
+pkgs2 = []
+pkgs2ID = [2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 17, 18, 21, 22, 23, 24]
+for i in pkgs2ID:
+    pkgs2.append(pHash.search(i))
+
+truck2 = truck(1, 18, datetime.datetime(2022, 4, 7, 8), pkgs2)
+
+pkgs3 = []
+pkgs3ID = [25, 26, 27, 31, 33, 35, 36, 38, 39]
+for i in pkgs3ID:
+    pkgs3.append(pHash.search(i))
+
+truck3 = truck(1, 18, datetime.datetime(2022, 4, 7, 10), pkgs3)
+
 
 def startDelivery(truck):
     currentAddress = 'HUB'
-    currentTime = datetime.datetime(2022, 4, 7, 8)
+    currentTime = truck.time
+    shortestPackage = None
 
     while truck.morePackagesToDeliver():
 
@@ -66,24 +81,37 @@ def startDelivery(truck):
                 if distance < shortestMileage:
                     shortestMileage = distance
                     shortestPackage = pkg
-                    timeToDeliver = shortestMileage / 18
-                    time_obj = datetime.timedelta(hours=timeToDeliver)
 
 
-        shortestPackage.deliveryTime = currentTime + time_obj
-        currentTime = shortestPackage.deliveryTime
-        print(shortestPackage.deliveryTime)
+        timeToDeliver = shortestMileage / 18
+        time_obj = datetime.timedelta(hours=timeToDeliver)
+
+
+        currentTime = currentTime + time_obj
+        shortestPackage.deliveryTime = currentTime
+        #print(shortestPackage.deliveryTime)
         shortestPackage.mileage = shortestMileage
         currentAddress = shortestPackage.address
 
-
-    print(truck.getMileageTotal())
-    print(shortestPackage.deliveryTime)
+    returnTrip = findDistance(shortestPackage.address,'HUB')
+    #print(truck.getMileageTotal())
+    #print(truck.getMileageTotal() + returnTrip)
+    #print(shortestPackage.deliveryTime)
 
 startDelivery(truck1)
-truck1.getDeliveryTime()
-truck1.getPackageStatus()
+startDelivery(truck2)
+startDelivery(truck3)
+# truck1.getDeliveryTime()
+# truck1.getPackageStatus()
+inputTime = datetime.datetime(2022, 4, 7, 9)
 
+for pkgid in range(1, 40):
+    pkgObject = pHash.search(pkgid)
+    print(pkgObject.printPackageStatus(inputTime))
+#printPackageStatus - need two time frames - need to load all trucks
+#figure out userinterface
+
+#user interface
 
 
 

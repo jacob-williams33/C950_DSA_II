@@ -18,3 +18,12 @@ class package:
 
     def isNotDelivered(self):
         return not self.isDelivered()
+
+    def printPackageStatus(self, statusTime):
+        if statusTime >= self.deliveryTime:
+            deliveryStatus = "Delivered"
+        else:
+            deliveryStatus = "In-Transit"
+
+        return "%s, %s, %s, %s, %s, %s, %s, %s, %s" % (
+        self.packageID, self.address, self.city, self.state, self.zip, self.deadline, deliveryStatus, self.deliveryTime,str(self.mileage))

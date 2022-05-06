@@ -19,7 +19,7 @@ class package:
     def isNotDelivered(self):
         return not self.isDelivered()
 
-    #determines package status at any given time
+    #determines package status at any given time. Time complexity is O(1)
     def printPackageStatus(self, statusTime):
         if statusTime >= self.deliveryTime:
             deliveryStatus = "Delivered"

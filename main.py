@@ -9,7 +9,7 @@ import datetime
 
 
 pHash = ChainingHashTable()
-
+#method to load packages into hash table. Time complexity if O(N)
 def loadPackageData(fileName):
     with open(fileName) as packages:
         packageData = csv.reader(packages, delimiter=',')
@@ -30,7 +30,7 @@ def loadPackageData(fileName):
             # insert it into the hash table
             pHash.insert(pID, p)
 
-#method findDistance takes a start address and determines the distance to another given address from the distance table
+#method findDistance takes a start address and determines the distance to another given address from the distance table. Time Complexity is O(1)
 def findDistance(startAddress, nextAddress):
 
     startIndex = addressData.index(startAddress)
@@ -45,29 +45,30 @@ def findDistance(startAddress, nextAddress):
 loadPackageData('Packages.csv')
 
 
-#trucks are loaded manually according to constraints (packages that need to be on same truck, need early delivery, etc)
+#trucks are loaded manually according to constraints (packages that need to be on same truck, need early delivery, etc). Time complexity is O(N)
 pkgs1 = []
-pkgs1ID = [1, 6, 13, 14, 15, 16, 19, 20, 25, 28, 29, 30, 32, 34, 37, 40]
+pkgs1ID = [1, 2, 4, 5, 13, 14, 15, 16, 19, 20, 29, 30, 31, 34, 37, 40]
 for i in pkgs1ID:
     pkgs1.append(pHash.search(i))
 
 truck1 = truck(1, 18, datetime.datetime(2022, 4, 7, 8), pkgs1)
 
 pkgs2 = []
-pkgs2ID = [2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 17, 18, 21, 22, 23, 24]
+pkgs2ID = [3, 6, 18, 25, 28, 32, 36, 38]
 for i in pkgs2ID:
     pkgs2.append(pHash.search(i))
 
-truck2 = truck(1, 18, datetime.datetime(2022, 4, 7, 8), pkgs2)
+truck2 = truck(1, 18, datetime.datetime(2022, 4, 7, 9, 5), pkgs2)
 
 pkgs3 = []
-pkgs3ID = [25, 26, 27, 31, 33, 35, 36, 38, 39]
+pkgs3ID = [7, 8, 9, 10, 11, 12, 17, 21, 22, 23, 24, 26, 27, 33, 35, 39]
 for i in pkgs3ID:
     pkgs3.append(pHash.search(i))
 
 truck3 = truck(1, 18, datetime.datetime(2022, 4, 7, 10), pkgs3)
 
 #delivery method takes the trucks and uses a nearest neighbor algorithm to determine each stop. Records delivery time, and mileage for each delivery.
+#Time complexity is O(N^2)
 def startDelivery(truck):
     currentAddress = 'HUB'
     currentTime = truck.time
@@ -107,6 +108,8 @@ startDelivery(truck1)
 startDelivery(truck2)
 startDelivery(truck3)
 
+
+
 #user interface
 print('WGUPS Daily Local Deliveries Main Menu')
 print('Deliveries began at 2022-04-07 08:00L00. Deliveries ended at: ', truck3.time)
@@ -115,7 +118,10 @@ print('Truck 2 traveled: ', truck2.getMileageTotal(), ' miles.')
 print('Truck 3 traveled: ', truck3.getMileageTotal(), ' miles.')
 print('Total Miles Driven Was: ', truck1.getMileageTotal() + truck2.getMileageTotal() + truck3.getMileageTotal(), ' miles')
 
+
+
 #method for UI takes an input to run the program, calls printPackageStatus method to list all packages and status at any time
+#Time complexity is O(N)
 while True:
     try:
         runCommand = int(
@@ -124,8 +130,8 @@ while True:
             exit()
         elif runCommand == 1:
             #continue
-            hour = int(input('Enter Hour as HH: '))
-            minute = int(input('Enter Minute as MM: '))
+            hour = int(input('Enter Hour: '))
+            minute = int(input('Enter Minute: '))
             if hour < 8:
                 print('Deliveries Not Started')
                 continue
@@ -133,13 +139,15 @@ while True:
                 print('Invalid Time. Re-enter')
                 continue
             inputTime = datetime.datetime(2022, 4, 7, hour, minute)
-            for pkgid in range(1, 40):
+            for pkgid in range(1, 41):
                 pkgObject = pHash.search(pkgid)
                 print(pkgObject.printPackageStatus(inputTime))
 
     except ValueError:
         print('Invalid Entry')
         exit()
+
+
 
 
 

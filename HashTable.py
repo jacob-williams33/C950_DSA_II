@@ -4,7 +4,7 @@ from PackageClass import package
 class ChainingHashTable:
     # Constructor with optional initial capacity parameter.
     # Assigns all buckets with an empty list.
-    def __init__(self, initial_capacity=39):
+    def __init__(self, initial_capacity=41):
         # initialize the hash table with empty bucket list entries.
         self.table = []
         for i in range(initial_capacity):
@@ -22,7 +22,7 @@ class ChainingHashTable:
         bucket_list.append(item)
     '''
 
-    def insert(self, key, item):  # does both insert and update
+    def insert(self, key, item):  # does both insert and update. Time complexity is O(N)
         # get the bucket list where this item will go.
         bucket = hash(key) % len(self.table)
         bucket_list = self.table[bucket]
@@ -60,7 +60,7 @@ class ChainingHashTable:
     '''
 
     def search(self, key):
-        # get the bucket list where this key would be.
+        # get the bucket list where this key would be. Time complexity is O(N)
         bucket = hash(key) % len(self.table)
         bucket_list = self.table[bucket]
         # print(bucket_list)
@@ -85,7 +85,7 @@ class ChainingHashTable:
     '''
 
     def remove(self, key):
-        # get the bucket list where this item will be removed from.
+        # get the bucket list where this item will be removed from. Time complexity is O(N)
         bucket = hash(key) % len(self.table)
         bucket_list = self.table[bucket]
 

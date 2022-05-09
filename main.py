@@ -9,7 +9,7 @@ import datetime
 
 
 pHash = ChainingHashTable()
-#method to load packages into hash table. Time complexity if O(N)
+#method to load packages into hash table. Time complexity of O(1)
 def loadPackageData(fileName):
     with open(fileName) as packages:
         packageData = csv.reader(packages, delimiter=',')

@@ -22,7 +22,7 @@ class ChainingHashTable:
         bucket_list.append(item)
     '''
 
-    def insert(self, key, item):  # does both insert and update. Time complexity is O(N)
+    def insert(self, key, item):  # does both insert and update. Time complexity is O(1)
         # get the bucket list where this item will go.
         bucket = hash(key) % len(self.table)
         bucket_list = self.table[bucket]
@@ -85,7 +85,7 @@ class ChainingHashTable:
     '''
 
     def remove(self, key):
-        # get the bucket list where this item will be removed from. Time complexity is O(N)
+        # get the bucket list where this item will be removed from. Time complexity is O(1)
         bucket = hash(key) % len(self.table)
         bucket_list = self.table[bucket]
 
